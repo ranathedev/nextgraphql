@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Roboto+Mono:wght@500&display=swap');
+
+body {
+  color: #000;
+  max-width: 100vw;
+  background: #fff;
+  font-family: 'Poppins', sans-serif;
+}
+
+body::-webkit-scrollbar {
+  display: none;
+}
+
+.roboto {
+  font-family: 'Roboto Mono', monospace;
+}

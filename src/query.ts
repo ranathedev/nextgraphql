@@ -1,6 +1,4 @@
-import github from './db'
-
-const username = github.username
+const username = 'ranathedev'
 
 const query = (
   pageCount: number,
@@ -16,7 +14,7 @@ const query = (
           name
           url
         }
-        search(query: "${queryString} user:ranathedev", type: REPOSITORY, ${paginationKeyword}: ${pageCount}, ${paginationString}) {
+        search(query: "${queryString} user:${username}", type: REPOSITORY, ${paginationKeyword}: ${pageCount}, ${paginationString}) {
           repositoryCount
           edges {
             cursor

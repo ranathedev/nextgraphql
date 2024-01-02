@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
 import Image from 'next/image'
+import axios from 'axios'
 
-import github from '@/src/db'
 import query from '@/src/query'
 import RepoIcon from 'assets/RepoIcon'
 import RepoInfo from 'components/RepoInfo'
@@ -25,39 +25,36 @@ export default function Home() {
   const [paginationKeyword, setPaginationKeyword] = useState('first')
   const [paginationString, setPaginationString] = useState('')
 
-  const fetchData = () => {
-    const queryText = JSON.stringify(
-      query(pageCount, queryString, paginationKeyword, paginationString)
+  const fetchData = async () => {
+    const queryText = query(
+      pageCount,
+      queryString,
+      paginationKeyword,
+      paginationString
     )
 
-    fetch(github.baseUrl, {
-      method: 'POST',
-      headers: github.headers,
-      body: queryText,
-    })
-      .then(response => response.json())
-      .then(res => {
-        const user = res.data.user
-        const data = res.data.search
-        const name = user.name
-        const avatarUrl = user.avatarUrl
-        const url = user.url
-        const repos = data.edges
-        const total = data.repositoryCount
-        const startCursor = data.pageInfo.startCursor
-        const endCursor = data.pageInfo.endCursor
-        const hasPreviousPage = data.pageInfo.hasPreviousPage
-        const hasNextPage = data.pageInfo.hasNextPage
-        setName(name)
-        setImgUrl(avatarUrl)
-        setUrl(url)
-        setRepoList(repos)
-        setTotalCount(total)
-        setStartCursor(startCursor)
-        setEndCursor(endCursor)
-        setHasPrevPg(hasPreviousPage)
-        setHasNextPg(hasNextPage)
-      })
+    const res = await axios.post('https://proxar.fly.dev/api/github', queryText)
+
+    const user = res.data.user
+    const data = res.data.search
+    const name = user.name
+    const avatarUrl = user.avatarUrl
+    const url = user.url
+    const repos = data.edges
+    const total = data.repositoryCount
+    const startCursor = data.pageInfo.startCursor
+    const endCursor = data.pageInfo.endCursor
+    const hasPreviousPage = data.pageInfo.hasPreviousPage
+    const hasNextPage = data.pageInfo.hasNextPage
+    setName(name)
+    setImgUrl(avatarUrl)
+    setUrl(url)
+    setRepoList(repos)
+    setTotalCount(total)
+    setStartCursor(startCursor)
+    setEndCursor(endCursor)
+    setHasPrevPg(hasPreviousPage)
+    setHasNextPg(hasNextPage)
   }
 
   useEffect(() => {

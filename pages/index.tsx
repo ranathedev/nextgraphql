@@ -33,7 +33,10 @@ export default function Home() {
       paginationString
     )
 
-    const res = await axios.post('https://proxar.fly.dev/api/github', queryText)
+    const res = await axios.post(
+      'https://proxar.vercel.app/api/github',
+      queryText
+    )
 
     const user = res.data.user
     const data = res.data.search

@@ -34,7 +34,7 @@ export default function Home() {
     )
 
     const res = await axios.post(
-      'https://proxar.vercel.app/api/github',
+      'https://proxar.ranaintizar.com/api/github',
       queryText
     )
 

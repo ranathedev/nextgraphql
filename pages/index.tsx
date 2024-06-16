@@ -35,20 +35,21 @@ export default function Home() {
 
     const res = await axios.post(
       'https://proxar.ranaintizar.com/api/github',
-      queryText
+      queryText,
+      {
+        headers: {
+          Authorization: `Bearer ${process.env.AUTH_TOKEN}`,
+        },
+      }
     )
 
-    const user = res.data.user
-    const data = res.data.search
-    const name = user.name
-    const avatarUrl = user.avatarUrl
-    const url = user.url
-    const repos = data.edges
-    const total = data.repositoryCount
-    const startCursor = data.pageInfo.startCursor
-    const endCursor = data.pageInfo.endCursor
-    const hasPreviousPage = data.pageInfo.hasPreviousPage
-    const hasNextPage = data.pageInfo.hasNextPage
+    const { name, avatarUrl, url } = res.data.user
+    const {
+      edges: repos,
+      repositoryCount: total,
+      pageInfo: { startCursor, endCursor, hasPreviousPage, hasNextPage },
+    } = res.data.search
+
     setName(name)
     setImgUrl(avatarUrl)
     setUrl(url)

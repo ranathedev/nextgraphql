@@ -1,5 +1,5 @@
-import React from 'react'
-import Link from 'next/link'
+import React from "react"
+import Link from "next/link"
 
 interface Props {
   repo: {
@@ -28,14 +28,14 @@ const RepoInfo = ({ repo }: Props) => {
         <div className="p-1.5 bg-green-500 text-white rounded-md text-sm">
           {repo.viewerSubscription}
         </div>
-        {repo.licenseInfo.spdxId && (
+        {repo?.licenseInfo?.spdxId && (
           <Link
             href={repo.licenseInfo.url}
             target="_blank"
             className={`py-1 px-1.5 ${
-              repo.licenseInfo.spdxId === 'NOASSERTION'
-                ? 'bg-blue--500 text-white'
-                : 'bg-none border border-blue-500 text-blue-500'
+              repo.licenseInfo.spdxId === "NOASSERTION"
+                ? "bg-blue--500 text-white"
+                : "bg-none border border-blue-500 text-blue-500"
             } rounded-md text-sm text-center hover:underline`}
           >
             {repo.licenseInfo.spdxId}

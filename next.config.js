@@ -2,13 +2,13 @@
 const nextConfig = {
   reactStrictMode: true,
   env: {
-    GITHUB_API_KEY: process.env.GITHUB_API_KEY,
+    AUTH_TOKEN: process.env.AUTH_TOKEN,
   },
   images: {
     remotePatterns: [
       {
-        protocol: 'https',
-        hostname: 'avatars.githubusercontent.com',
+        protocol: "https",
+        hostname: "avatars.githubusercontent.com",
       },
     ],
   },

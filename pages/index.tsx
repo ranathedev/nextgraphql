@@ -1,29 +1,29 @@
-import React, { useEffect, useState } from 'react'
-import Head from 'next/head'
-import Link from 'next/link'
-import Image from 'next/image'
-import axios from 'axios'
+import React, { useEffect, useState } from "react"
+import Head from "next/head"
+import Link from "next/link"
+import Image from "next/image"
+import axios from "axios"
 
-import query from '@/src/query'
-import RepoIcon from 'assets/RepoIcon'
-import RepoInfo from 'components/RepoInfo'
-import SearchBar from 'components/SearchBar'
-import PaginationBtns from 'components/PaginationBtns'
+import query from "@/src/query"
+import RepoIcon from "assets/RepoIcon"
+import RepoInfo from "components/RepoInfo"
+import SearchBar from "components/SearchBar"
+import PaginationBtns from "components/PaginationBtns"
 
 export default function Home() {
-  const [name, setName] = useState('')
-  const [url, setUrl] = useState('')
-  const [imgUrl, setImgUrl] = useState('')
+  const [name, setName] = useState("")
+  const [url, setUrl] = useState("")
+  const [imgUrl, setImgUrl] = useState("")
   const [repoList, setRepoList] = useState([])
   const [pageCount, setPageCount] = useState(10)
-  const [queryString, setQueryString] = useState('')
+  const [queryString, setQueryString] = useState("")
   const [totalCount, setTotalCount] = useState(0)
-  const [startCursor, setStartCursor] = useState('')
-  const [endCursor, setEndCursor] = useState('')
+  const [startCursor, setStartCursor] = useState("")
+  const [endCursor, setEndCursor] = useState("")
   const [hasPrevPg, setHasPrevPg] = useState(false)
   const [hasNextPg, setHasNextPg] = useState(false)
-  const [paginationKeyword, setPaginationKeyword] = useState('first')
-  const [paginationString, setPaginationString] = useState('')
+  const [paginationKeyword, setPaginationKeyword] = useState("first")
+  const [paginationString, setPaginationString] = useState("")
 
   const fetchData = async () => {
     const queryText = query(
@@ -34,7 +34,7 @@ export default function Home() {
     )
 
     const res = await axios.post(
-      'https://proxar.ranaintizar.com/api/github',
+      "http://localhost:5500/api/github",
       queryText,
       {
         headers: {
@@ -103,7 +103,7 @@ export default function Home() {
               </Link>
             </div>
             <div>
-              {imgUrl !== '' && (
+              {imgUrl !== "" && (
                 <Image
                   src={imgUrl}
                   width={50}

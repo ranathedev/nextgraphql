@@ -34,7 +34,7 @@ export default function Home() {
     )
 
     const res = await axios.post(
-      "http://localhost:5500/api/github",
+      "https://proxar.ranaintizar.com/api/github",
       queryText,
       {
         headers: {
